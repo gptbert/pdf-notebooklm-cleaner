@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pdf-notebooklm-cleaner"
+version = "0.1.0"
+description = "CLI tool to remove the NotebookLM mark from the bottom-right corner of each PDF page and export screenshots plus a cleaned PDF."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+  { name = "Your Name" }
+]
+license = "LicenseRef-Proprietary"
+keywords = ["pdf", "notebooklm", "screenshot", "cleaner", "pymupdf"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "Operating System :: OS Independent",
+  "Topic :: Utilities",
+  "Topic :: Multimedia :: Graphics",
+  "Topic :: Office/Business",
+]
+dependencies = [
+  "PyMuPDF>=1.24.0",
+  "Pillow>=10.0.0",
+  "numpy>=1.26.0",
+]
+
+[project.scripts]
+pdf-notebooklm-cleaner = "pdf_notebooklm_cleaner.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/yourname/pdf-notebooklm-cleaner"
+Repository = "https://github.com/yourname/pdf-notebooklm-cleaner"
+Issues = "https://github.com/yourname/pdf-notebooklm-cleaner/issues"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
