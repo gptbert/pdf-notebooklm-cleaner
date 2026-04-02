@@ -11,7 +11,7 @@ requires-python = ">=3.10"
 authors = [
   { name = "Your Name" }
 ]
-license = "LicenseRef-Proprietary"
+license = "MIT"
 keywords = ["pdf", "notebooklm", "screenshot", "cleaner", "pymupdf"]
 classifiers = [
   "Programming Language :: Python :: 3",
@@ -26,6 +26,7 @@ classifiers = [
   "Topic :: Utilities",
   "Topic :: Multimedia :: Graphics",
   "Topic :: Office/Business",
+  "License :: OSI Approved :: MIT License",
 ]
 dependencies = [
   "PyMuPDF>=1.24.0",
