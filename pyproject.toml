@@ -9,7 +9,7 @@ description = "CLI tool to remove the NotebookLM mark from the bottom-right corn
 readme = "README.md"
 requires-python = ">=3.10"
 authors = [
-  { name = "Your Name" }
+  { name = "gptbert" }
 ]
 license = "MIT"
 keywords = ["pdf", "notebooklm", "screenshot", "cleaner", "pymupdf"]
