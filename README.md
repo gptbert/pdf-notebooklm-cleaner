@@ -1,5 +1,10 @@
 # pdf-notebooklm-cleaner
 
+[![PyPI version](https://img.shields.io/pypi/v/pdf-notebooklm-cleaner)](https://pypi.org/project/pdf-notebooklm-cleaner/)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pdf-notebooklm-cleaner)](https://pypi.org/project/pdf-notebooklm-cleaner/)
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/pdf-notebooklm-cleaner)](https://pypi.org/project/pdf-notebooklm-cleaner/)
+[![License](https://img.shields.io/pypi/l/pdf-notebooklm-cleaner)](LICENSE)
+
 命令行工具：输入 PDF，输出两类结果：
 - 每页完整截图 ZIP
 - 去除右下角 NotebookLM 标识后的 clean PDF
