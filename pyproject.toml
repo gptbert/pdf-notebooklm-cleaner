@@ -26,7 +26,6 @@ classifiers = [
   "Topic :: Utilities",
   "Topic :: Multimedia :: Graphics",
   "Topic :: Office/Business",
-  "License :: OSI Approved :: MIT License",
 ]
 dependencies = [
   "PyMuPDF>=1.24.0",
