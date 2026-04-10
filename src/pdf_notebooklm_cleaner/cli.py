@@ -104,26 +104,18 @@ def render_page(page: fitz.Page, dpi: int) -> Image.Image:
     return Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
 
 
-def estimate_background(arr: np.ndarray, box: tuple[int, int, int, int]) -> tuple[int, int, int]:
-    x1, y1, x2, y2 = box
+def estimate_background(arr: np.ndarray) -> tuple[int, int, int]:
+    """Sample page corners to determine the background color."""
     h, w, _ = arr.shape
-    samples: list[np.ndarray] = []
-    pad = 8
-
-    regions = [
-        arr[max(0, y1 - pad):y1, max(0, x1 - pad):min(w, x2 + pad)],
-        arr[y2:min(h, y2 + pad), max(0, x1 - pad):min(w, x2 + pad)],
-        arr[max(0, y1 - pad):min(h, y2 + pad), max(0, x1 - pad):x1],
-        arr[max(0, y1 - pad):min(h, y2 + pad), x2:min(w, x2 + pad)],
+    s = min(30, h // 8, w // 8)
+    corners = [
+        arr[:s, :s],
+        arr[:s, w - s:],
+        arr[h - s:, :s],
+        arr[h - s:, w - s:],
     ]
-    for region in regions:
-        if region.size:
-            samples.append(region.reshape(-1, 3))
-
-    if not samples:
-        return (255, 255, 255)
-
-    median_rgb = np.median(np.concatenate(samples, axis=0), axis=0)
+    pixels = np.concatenate([c.reshape(-1, 3) for c in corners], axis=0)
+    median_rgb = np.median(pixels, axis=0)
     return tuple(int(v) for v in median_rgb)
 
 
@@ -172,7 +164,7 @@ def detect_mark_box(img: Image.Image, cfg: CleanConfig) -> tuple[int, int, int, 
 def clean_mark(img: Image.Image, cfg: CleanConfig) -> tuple[Image.Image, tuple[int, int, int, int]]:
     rgb = np.array(img.convert("RGB"))
     box = detect_mark_box(img, cfg)
-    fill = estimate_background(rgb, box)
+    fill = estimate_background(rgb)
     x1, y1, x2, y2 = box
     rgb[y1:y2, x1:x2] = np.array(fill, dtype=np.uint8)
     return Image.fromarray(rgb, mode="RGB"), box
